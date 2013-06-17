@@ -1,5 +1,5 @@
 /**
-*
+*	TreeNode
 *
 */
 function TreeNode(value){
@@ -11,9 +11,11 @@ function TreeNode(value){
 	this.getValue = function(){
 		return object;
 	};
+	
 	this.setValue = function(value){
 		object = value;
 	};
+	
 	this.getLeftNode = function(){
 		return leftNode;
 	};
@@ -48,7 +50,11 @@ function TreeNode(value){
 			leftNode = node;
 		});
 	};
-	
+	/**
+	* Sets the right node.
+	*
+	* @param aNode TreeNode
+	*/
 	this.setRightNode = function(aNode){
 		setNode(aNode,function(node){
 			rightNode = node;
@@ -56,13 +62,30 @@ function TreeNode(value){
 	};
 }
 
-function TreeEnumerator(){}
+/**
+ * TreeEnumerator
+ * 
+ *  
+ */
+function TreeEnumerator(){};
+/**
+ * hasMoreElements
+ * 
+ * @params none
+ * @return boolean 
+ */
 TreeEnumerator.prototype.hasMoreElements=function(){};
+/**
+ * nextElement
+ * 
+ * @params none
+ * @return object 
+ */
 TreeEnumerator.prototype.nextElement=function(){};
 
 /**
-*
-*
+* TreeList
+* Create TreeList prototype object, only expose public functions.
 */
 function TreeList(){}
 TreeList.prototype.contains=function(object){};
@@ -73,7 +96,13 @@ TreeList.prototype.remove = function(object){};
 TreeList.prototype.elementsLevelOrder=function(){};
 TreeList.prototype.elementsLevelInOrder=function(){};
 
-
+/**
+ * TreeListFactory
+ * 
+ * has one producer method "getTreeList"
+ * 
+ * return TreeList  
+ */
 var TreeListFactory = (function(){
 
 	var height = function(node){
