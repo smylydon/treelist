@@ -12,19 +12,19 @@ var treeContentsLevelOrder = function (mytree,array){
 
 module('Module A');  
 test( "Test TreeNode all functions.", function() {
-    var mynode = new TreeNode(9);
-    ok(mynode instanceof TreeNode, "check typeof mynode is TreeNode.");
-    ok(mynode.getValue() === 9, "value of first node should be 9.");
-    mynode.setValue(7);
-    ok(mynode.getValue() === 7, "value of first node should be 7.");
-    equal( mynode.getLeftNode(), null, "check leftNode is null." );
-    equal( mynode.getRightNode(), null, "check rightNode is null." );
-    mynode.setLeftNode(new TreeNode(6));
-    mynode.setRightNode(new TreeNode(8));
-    ok( mynode.getLeftNode() instanceof TreeNode, "check leftNode is not null." );
-    ok( mynode.getRightNode() instanceof TreeNode, "check rightNode is not null." );
-    equal( mynode.getLeftNode().getValue(), 6, "check leftNode is value is 6." );
-    equal( mynode.getRightNode().getValue(), 8, "check rightNode is value is 8." );
+    var treeNode = new TreeNode(9);
+    ok(treeNode instanceof TreeNode, "check treeNode is an instance of TreeNode.");
+    ok(treeNode.getValue() === 9, "check constructor set value of node to 9.");
+    treeNode.setValue(7);
+    ok(treeNode.getValue() === 7, "check setValue set node to 7.");
+    equal( treeNode.getLeftNode(), null, "check getLeftNode returns null." );
+    equal( treeNode.getRightNode(), null, "check getRightNode returns null." );
+    treeNode.setLeftNode(new TreeNode(6));
+    treeNode.setRightNode(new TreeNode(8));
+    ok( treeNode.getLeftNode() instanceof TreeNode, "check leftNode is not null." );
+    ok( treeNode.getRightNode() instanceof TreeNode, "check rightNode is not null." );
+    equal( treeNode.getLeftNode().getValue(), 6, "check leftNode was set to a value of 6." );
+    equal( treeNode.getRightNode().getValue(), 8, "check rightNode was set to a value of 8." );
 });
 
 module('Module B');  
@@ -42,43 +42,43 @@ test( "Test TreeList insert and contains", function() {
     mytree.insert(10);
     mytree.insert(12);	
     
-    for(var i=6; i<13;i++){
+    for(var i=6; i<13; i++){
         equal( mytree.contains(i), true, "check if tree contains "+i+"." );
     }	 
 });
 
 module('Module C');  
 test( "Test TreeList level order traversal", function() {
-    var mytree = TreeListFactory.getTreeList();
-    ok(mytree instanceof TreeList, "check typeof mytree is TreeList.");
-    mytree.insert(9);
-    mytree.insert(7);
-    mytree.insert(8);
-    mytree.insert(6);
+    var treeList = TreeListFactory.getTreeList();
+    ok(treeList instanceof TreeList, "check typeof treeList is TreeList.");
+    treeList.insert(9);
+    treeList.insert(7);
+    treeList.insert(8);
+    treeList.insert(6);
     
-    mytree.insert(11);
-    mytree.insert(10);
-    mytree.insert(12);	
+    treeList.insert(11);
+    treeList.insert(10);
+    treeList.insert(12);	
     
     var array = [9,7,11,6,8,10,12];
     
-    treeContentsLevelOrder(mytree,array);
+    treeContentsLevelOrder(treeList,array);
 });
 
 module('Module D');  
 test( "Test TreeList inorder traversal", function() {
-    var mytree = TreeListFactory.getTreeList();
-    ok(mytree instanceof TreeList, "check typeof mytree is TreeList.");
-    mytree.insert(9);
-    mytree.insert(7);
-    mytree.insert(8);
-    mytree.insert(6);
+    var treeList = TreeListFactory.getTreeList();
+    ok(treeList instanceof TreeList, "check typeof treeList is TreeList.");
+    treeList.insert(9);
+    treeList.insert(7);
+    treeList.insert(8);
+    treeList.insert(6);
     
-    mytree.insert(11);
-    mytree.insert(10);
-    mytree.insert(12);	
+    treeList.insert(11);
+    treeList.insert(10);
+    treeList.insert(12);	
     
-    var enumerator = mytree.elementsLevelInOrder();
+    var enumerator = treeList.elementsLevelInOrder();
     ok(enumerator instanceof TreeEnumerator, "check that TreeEnumerator is returned by elementsLevelOrder.");
     equal( enumerator.hasMoreElements(), true, "check hasMoreElements is true." );
     
@@ -94,53 +94,53 @@ test( "Test TreeList inorder traversal", function() {
 
 module('Module E');  
 test( "Test TreeList remove node.", function() {
-    var mytree = TreeListFactory.getTreeList();
-    ok(mytree instanceof TreeList, "check typeof mytree is TreeList.");
-    equal( mytree.remove(), false, "try removing nothing.." );
-    equal( mytree.remove(1000), false, "try removing a value not in the tree." );
-    equal( mytree.remove(9), false, "try removing 9." );
+    var treeList = TreeListFactory.getTreeList();
+    ok(treeList instanceof TreeList, "check typeof treeList is TreeList.");
+    equal( treeList.remove(), false, "try removing nothing from tree." );
+    equal( treeList.remove(1000), false, "try removing a value (1000) not in the tree." );
+    equal( treeList.remove(9), false, "try removing a value (9) not in the tree." );
     
-    mytree.insert(30);
-    mytree.insert(20);
-    mytree.insert(40);
+    treeList.insert(30);
+    treeList.insert(20);
+    treeList.insert(40);
     
-    mytree.insert(22);
-    mytree.insert(10);
+    treeList.insert(22);
+    treeList.insert(10);
     
-    mytree.insert(9);
-    mytree.insert(12);	
+    treeList.insert(9);
+    treeList.insert(12);	
     
-    mytree.insert(21);
-    mytree.insert(23);
+    treeList.insert(21);
+    treeList.insert(23);
     
     
-    mytree.insert(35);
-    mytree.insert(42);
+    treeList.insert(35);
+    treeList.insert(42);
     
-    mytree.insert(34);
-    mytree.insert(36);	
+    treeList.insert(34);
+    treeList.insert(36);	
     
-    mytree.insert(41);
-    mytree.insert(43);
+    treeList.insert(41);
+    treeList.insert(43);
     
-    equal( mytree.remove(), false, "try removing nothing.." );
-    equal( mytree.remove(1000), false, "try removing a value (1000) not in the tree." );
-    equal( mytree.remove(1), false, "try removing a value (1) not in the tree." );
-    equal( mytree.remove(30), true, "try removing 30." );
+    equal( treeList.remove(), false, "try removing nothing.." );
+    equal( treeList.remove(1000), false, "try removing a value (1000) not in the tree." );
+    equal( treeList.remove(1), false, "try removing a value (1) not in the tree." );
+    equal( treeList.remove(30), true, "try removing 30." );
     
     var array = [34,20,40,10,22,35,42,9,12,21,23,36,41,43];
                  
-    treeContentsLevelOrder(mytree,array);
+    treeContentsLevelOrder(treeList,array);
                      
-    equal( mytree.remove(36), true, "try removing 36." );
+    equal( treeList.remove(36), true, "try removing 36." );
                      
     array = [34,20,40,10,22,35,42,9,12,21,23,41,43];
-    treeContentsLevelOrder(mytree,array);
+    treeContentsLevelOrder(treeList,array);
         
-    equal( mytree.remove(22), true, "try removing 22." );
+    equal( treeList.remove(22), true, "try removing 22." );
         
     array = [34,20,40,10,23,35,42,9,12,21,41,43];
-    treeContentsLevelOrder(mytree,array);
+    treeContentsLevelOrder(treeList,array);
 });
     
     
