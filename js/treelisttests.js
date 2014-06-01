@@ -1,6 +1,6 @@
 
-var treeContentsLevelOrder = function (mytree,array){
-    var enumerator = mytree.elementsLevelOrder();
+var treeContentsLevelOrder = function (treeList,array){
+    var enumerator = treeList.elementsLevelOrder();
     ok(enumerator instanceof TreeEnumerator, "check that TreeEnumerator is returned by elementsLevelOrder.");
     equal( enumerator.hasMoreElements(), true, "check hasMoreElements is true." );
     
@@ -29,21 +29,21 @@ test( "Test TreeNode all functions.", function() {
 
 module('Module B');  
 test( "Test TreeList insert and contains", function() {
-    var mytree = TreeListFactory.getTreeList();
-    ok(mytree instanceof TreeList, "check typeof mytree is TreeList.");
-    mytree.insert(9);
-    equal( mytree.contains(5), false, "check if tree contains 5." );
-    equal( mytree.contains(9), true, "check if tree contains 9." );
-    mytree.insert(7);
-    mytree.insert(8);
-    mytree.insert(6);
+    var treeList = TreeListFactory.getTreeList();
+    ok(treeList instanceof TreeList, "check typeof treeList is TreeList.");
+    treeList.insert(9);
+    equal( treeList.contains(5), false, "check if tree contains 5." );
+    equal( treeList.contains(9), true, "check if tree contains 9." );
+    treeList.insert(7);
+    treeList.insert(8);
+    treeList.insert(6);
     
-    mytree.insert(11);
-    mytree.insert(10);
-    mytree.insert(12);	
+    treeList.insert(11);
+    treeList.insert(10);
+    treeList.insert(12);	
     
     for(var i=6; i<13; i++){
-        equal( mytree.contains(i), true, "check if tree contains "+i+"." );
+        equal( treeList.contains(i), true, "check if tree contains "+i+"." );
     }	 
 });
 

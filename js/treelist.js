@@ -11,12 +11,13 @@ function TreeNode(number){
 	if ((typeof number === 'number') && (number % 1 === 0)) {
 		value = number;
 	}
+	
 	/**
 	* getValue
 	* 
 	* returns the value of this TreeNode.
 	* 
-	* @returns Number
+	* @returns {Number}
 	*/
 	this.getValue = function(){
 		return value;
@@ -28,8 +29,8 @@ function TreeNode(number){
 	* Sets the value of this node to an integer number. The argument is
 	* checked to make sure that it is a number and that it is an integer.
 	*
-	* @param value integer
-	* @throws 'Node value must be an Integer.'
+	* @param {Number} value must be an integer.
+	* @throws {'Node value must be an Integer.'}
 	*/
 	this.setValue = function(number){
 		if ((typeof number === 'number') && (number % 1 === 0)) {
@@ -42,7 +43,7 @@ function TreeNode(number){
 	/**
 	* getLeftNode
 	* 
-	* @returns TreeNode 
+	* @returns {TreeNode} 
 	*/
 	this.getLeftNode = function(){
 		return leftNode;
@@ -51,7 +52,7 @@ function TreeNode(number){
 	/**
 	* getRightNode
 	* 
-	* @returns TreeNode
+	* @returns {TreeNode}
 	*/
 	this.getRightNode = function(){
 		return rightNode;
@@ -65,8 +66,8 @@ function TreeNode(number){
 	};
 	
 	/**
-	 * 
-	 */
+	* 
+	*/
 	this.setHeight=function(value){
 		height = value;
 	};
@@ -78,9 +79,9 @@ function TreeNode(number){
 	* or that is null otherwise throw an error. If the node is ok then
 	* it passes to the callback function for assignment.
 	*
-	* @param aNode TreeNode
-	* @param callbck function
-	* @throws 'An instance of TreeNode Required!'
+	* @param {TreeNode} aNode
+	* @param {Function} callback
+	* @throws {'An instance of TreeNode Required!'}
 	*/
 	function setNode(aNode,callback){
 		if((aNode instanceof TreeNode)||(aNode === null)){
@@ -97,7 +98,7 @@ function TreeNode(number){
 	* Sets the left node. Uses setNode function to make sure the node is an
 	* actually instance of TreeNode or null. 
 	*
-	* @param aNode TreeNode
+	* @param {TreeNode} aNode
 	*/
 	this.setLeftNode = function(aNode){
 		setNode(aNode,function(node){
@@ -110,7 +111,7 @@ function TreeNode(number){
 	* Sets the right node. Uses setNode function to make sure the node is an
 	* actually instance of TreeNode or null. 
 	*
-	* @param aNode TreeNode
+	* @param {TreeNode} aNode
 	*/
 	this.setRightNode = function(aNode){
 		setNode(aNode,function(node){
@@ -120,23 +121,24 @@ function TreeNode(number){
 }
 
 /**
- * TreeEnumerator
- * 
- *  
- */
+* TreeEnumerator
+* 
+*  
+*/
 function TreeEnumerator(){};
 
 /**
- * hasMoreElements
- * 
- * @return boolean 
- */
+* hasMoreElements
+* 
+* @return {Boolean} 
+*/
 TreeEnumerator.prototype.hasMoreElements=function(){};
+
 /**
- * nextElement
- * 
- * @return object 
- */
+* nextElement
+* 
+* @return {Object} 
+*/
 TreeEnumerator.prototype.nextElement=function(){};
 
 /**
@@ -157,12 +159,12 @@ TreeList.prototype.elementsLevelInOrder=function(){};
  * 
  * has one producer method "getTreeList"
  * 
- * return TreeList  
+ * @return {TreeList}  
  */
-var TreeListFactory = (function(){
+var TreeListFactory = (function() {
 
-	var height = function(node){
-		if(node === null){
+	var height = function(node) {
+		if (node === null) {
 			return 0;
 		}
 		var leftHeight = height(node.getLeftNode());
@@ -170,7 +172,7 @@ var TreeListFactory = (function(){
 		return Math.max(leftHeight,rightHeight)+1;
 	};
 	
-	var checkHeight = function(node,parent){
+	var checkHeight = function(node,parent) {
 		var leftNode = node.getLeftNode();
 		var rightNode = node.getRightNode();
 		
@@ -212,7 +214,6 @@ var TreeListFactory = (function(){
 			} else {
 				parent.setRightNode(node);
 			}
-
 		}
 	};
 	
@@ -319,7 +320,7 @@ var TreeListFactory = (function(){
         return node.getRightNode() === null ? node: searchRight(node.getRightNode());
     };
     
-	TreeObject.prototype.findMax= function() {
+	TreeObject.prototype.findMax = function() {
 		return top === null ? null: searchRight(this.top);
 	};
     
@@ -347,9 +348,9 @@ var TreeListFactory = (function(){
 					object = node.getValue();
 					removeNode(rightNode,node);						
 				}else if (parent.getLeftNode() === node) {
-					parent.setLeftNode( leftNode!==null ? leftNode:rightNode );
+					parent.setLeftNode(leftNode !== null ? leftNode : rightNode );
 				}else if (parent.getRightNode() === node) {
-					parent.setRightNode( leftNode!==null ? leftNode:rightNode );
+					parent.setRightNode(leftNode !== null ? leftNode : rightNode );
 				}
 				return true;
 			}
@@ -360,7 +361,7 @@ var TreeListFactory = (function(){
 		} else {
 			var aParent = new TreeNode(0);
 			aParent.setLeftNode(this.top);
-			var result = removeNode(this.top,aParent);
+			var result = removeNode(this.top, aParent);
 			this.top = aParent.getLeftNode();
 			return result;
 		}
@@ -395,7 +396,7 @@ var TreeListFactory = (function(){
 	};
 	
 /////////////////////////////////////////////////////////////////    
-    var StackItem = function(node,ready) {
+    var StackItem = function(node, ready) {
         this.root = node;
         this.isReady = ready;
     };
@@ -404,7 +405,7 @@ var TreeListFactory = (function(){
         var stack = [];
         
         if (top !== null) {
-            stack.push(new StackItem(top,false));
+            stack.push(new StackItem(top, false));
         }
         
         this.hasMoreElements = function() {
@@ -417,11 +418,11 @@ var TreeListFactory = (function(){
             while(!stackItem.isReady) {
                 var node = stackItem.root;
                 if (node.getRightNode() !== null) {
-                    stack.push(new StackItem(node.getRightNode(),false));
+                    stack.push(new StackItem(node.getRightNode(), false));
                 }
                 stack.push(new StackItem(node,true));
                 if (node.getLeftNode() !== null) {
-                    stack.push(new StackItem(node.getLeftNode(),false));
+                    stack.push(new StackItem(node.getLeftNode(), false));
                 }
                 stackItem = stack.pop();
             }
